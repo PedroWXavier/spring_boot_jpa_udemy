@@ -6,6 +6,7 @@ import org.example.spring_boot_data_udemy.model.Livro;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -106,5 +107,20 @@ public class AutorRepositoryTest {
         repository.save(autor);
 
         livroRepository.saveAll(List.of(livro, livro2));
+    }
+
+    @Test
+//    @Transactional
+    void listarLivrosAutor(){
+        UUID id = UUID.fromString("8534ba12-0e40-4fe2-a718-590278dbcc8b");
+        var autor = repository.findById(id).get();
+
+        // Precisa da anotacao Transactional
+//        autor.getLivros().forEach(System.out::println);
+
+        List<Livro> livrosLista = livroRepository.findByAutor(autor);
+        autor.setLivros(livrosLista);
+
+        autor.getLivros().forEach(livro -> System.out.println("Livro: " + livro));
     }
 }

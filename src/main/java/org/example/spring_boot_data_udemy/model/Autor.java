@@ -2,6 +2,7 @@ package org.example.spring_boot_data_udemy.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Data
 //@Getter // Anotacao do pacote lombok que cria os getters
 //@Setter // Anotacao do pacote lombok que cria os setters
+@ToString(exclude = "livros")
 public class Autor {
 
     @Id

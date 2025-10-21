@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest
@@ -68,7 +69,47 @@ class LivroRepositoryTest {
         System.out.println(livro.getTitulo());
         System.out.println("Autor:");
         System.out.println(livro.getAutor().getNome());
+    }
 
+    @Test
+    void buscarLivrosPorTituloTest(){
+        List<Livro> livros = repository.findByTitulo("Clean Code");
+        livros.forEach(livro -> System.out.println("Livro: " + livro));
+    }
+
+    @Test
+    void buscarTodosOsLivrosQueryPersonalizada(){
+        List<Livro> livros = repository.listarTodosOrdenadoPorTituloAndPreco();
+        livros.forEach(livro -> System.out.println("Livro: " + livro));
+    }
+
+    @Test
+    void ListarAutoresDosLivros(){
+        List<Autor> autores = repository.listarAutoresDosLivros();
+        autores.forEach(a -> System.out.println("Autor: " + a));
+    }
+
+    @Test
+    void ListarGenerosDeLivrosDeAutoresBrasileiros(){
+        List<String> resultado = repository.listarGenerosAutoresBrasileiros();
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void listarLivrosPorGenero(){
+        List<Livro> resultado = repository.findByGenero(GeneroLivro.FANTASIA, "dataPublicacao");
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void listarLivrosPorGeneroPositionalParameters(){
+        List<Livro> resultado = repository.findByGeneroPositionalParameters(GeneroLivro.FANTASIA, "dataPublicacao");
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void updateTituloLivro(){
+        repository.updateByTitulo("Clean Code", "Clean Code 2");
     }
 
 }

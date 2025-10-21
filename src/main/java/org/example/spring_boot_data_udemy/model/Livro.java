@@ -2,6 +2,7 @@ package org.example.spring_boot_data_udemy.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.util.UUID;
 // Os proximos dois podem ser uteis em algum outro momento
 //@NoArgsConstructor implementa um construtor vazio
 //@AllArgsConstructor implementa um construtor que recebe todos os atributos
+@ToString(exclude = "autor")
 public class Livro {
 
     @Id
