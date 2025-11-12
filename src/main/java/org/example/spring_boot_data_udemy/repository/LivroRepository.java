@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @see LivroRepositoryTest
+ * LivroRepositoryTest
  */
 public interface LivroRepository extends JpaRepository<Livro, UUID> {
 
