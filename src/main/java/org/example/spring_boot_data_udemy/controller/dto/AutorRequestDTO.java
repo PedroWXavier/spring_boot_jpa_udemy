@@ -4,7 +4,7 @@ import org.example.spring_boot_data_udemy.model.Autor;
 
 import java.time.LocalDate;
 
-public record AutorDTO(
+public record AutorRequestDTO(
         String nome,
         LocalDate dataNascimento,
         String nacionalidade) {
