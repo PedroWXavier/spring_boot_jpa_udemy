@@ -38,7 +38,7 @@ public class Autor {
 
     // Aqui nao temos a anotacao Colum, pois nao se trata de uma coluna no banco de dados
     // Eh apenas um relacionamento que podemos criar no nosso objeto Autor
-    @OneToMany(mappedBy = "autor")
+    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
 //    @Transient
     private List<Livro> livros;
 

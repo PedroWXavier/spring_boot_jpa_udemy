@@ -10,7 +10,7 @@ import java.util.Optional;
 @Component
 public class AutorValidator {
 
-    private AutorRepository autorRepository;
+    private final AutorRepository autorRepository;
 
     public AutorValidator(AutorRepository autorRepository){
         this.autorRepository = autorRepository;

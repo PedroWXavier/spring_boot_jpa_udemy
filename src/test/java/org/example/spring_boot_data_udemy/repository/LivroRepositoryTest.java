@@ -31,7 +31,7 @@ class LivroRepositoryTest {
         livro.setPreco(BigDecimal.valueOf(150));
 
         Autor autor = autorRepository
-                .findById(UUID.fromString("2441ebfb-c148-4cbc-ae71-9fb72d92f27d"))
+                .findById(UUID.fromString("df917936-2eed-450b-982a-cf9e4c3647b4"))
                 .orElse(null);
 
         livro.setAutor(autor);

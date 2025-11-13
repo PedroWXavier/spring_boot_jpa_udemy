@@ -19,4 +19,6 @@ public interface AutorRepository extends JpaRepository<Autor, UUID> {
     Optional<Autor> findByNomeAndDataNascimentoAndNacionalidade(
             String nome, LocalDate dataNascimento, String nacionalidade
     );
+
+
 }
