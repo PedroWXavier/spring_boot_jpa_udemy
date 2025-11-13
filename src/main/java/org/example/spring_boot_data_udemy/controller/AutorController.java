@@ -1,5 +1,6 @@
 package org.example.spring_boot_data_udemy.controller;
 
+import jakarta.validation.Valid;
 import org.example.spring_boot_data_udemy.controller.dto.AutorRequestDTO;
 import org.example.spring_boot_data_udemy.controller.dto.AutorResponseDTO;
 import org.example.spring_boot_data_udemy.controller.dto.ErroResponse;
@@ -31,7 +32,7 @@ public class AutorController {
 
     @PostMapping
     // @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> salvar(@RequestBody AutorRequestDTO autor) {
+    public ResponseEntity<Object> salvar(@RequestBody @Valid AutorRequestDTO autor) {
         try {
             Autor autorEntidade = autor.mapearParaAutor();
             service.salvar(autorEntidade);
@@ -84,7 +85,7 @@ public class AutorController {
 
     @GetMapping
     public ResponseEntity<List<AutorResponseDTO>> filtrar(@RequestParam(value = "nome", required = false) String nome, @RequestParam(value = "nacionalidade", required = false) String nacionalidade) {
-        List<Autor> resultado = service.pesquisa(nome, nacionalidade);
+        List<Autor> resultado = service.pesquisaByExample(nome, nacionalidade);
         List<AutorResponseDTO> lista = resultado.stream().map(autor -> new AutorResponseDTO(autor.getId(), autor.getNome(), autor.getDataNascimento(), autor.getNacionalidade())).toList();
 
         return ResponseEntity.ok(lista);
